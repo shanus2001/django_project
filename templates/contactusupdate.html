@@ -1,0 +1,36 @@
+{% extends "navfooter.html" %}
+{% block abc %}
+<div style="padding-top: 20px;padding-left: 100px;padding-right: 100px;">
+  <h1 style="text-align: center;color: greenyellow;padding-top:35px;padding-bottom: 15px;">UPDATE DATA</h1>
+  <div style="padding-top: 10px;padding-bottom: 10px;" class="mb-3">
+    <form action="/update-this-data/{{yourdata.id}}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+      <input type="text"  value="{{yourdata.username}}" name="fname" class="form-control" id="exampleFormControlInput1"
+        placeholder="Enter your name">
+  </div>
+  <div style="padding-top: 10px;padding-bottom: 10px;" class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email Address</label>
+    <input type="email" value="{{yourdata.useremail}}" name="email" class="form-control" id="exampleFormControlInput1"
+      placeholder="Enter your email">
+  </div>
+  <div style="padding-top: 10px;padding-bottom: 10px;" class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+    <input type="number" value="{{yourdata.phonenumber}}" name="number" class="form-control"
+      id="exampleFormControlInput1" placeholder="Enter your number">
+  </div>
+  <div style="padding-top: 10px;padding-bottom: 10px;" class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+    <textarea name="msg" class="form-control" id="exampleFormControlTextarea1" rows="3"
+      placeholder="Enetr your message" required>{{yourdata.message}}</textarea>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Update Image</label>
+    <input type="file" value="{{yourdata.myimage}}" name="img" class="form-control" id="exampleFormControlInput1" placeholder="upload your image"
+      required>
+  <div style="text-align: center;">
+    <button type="submit" class="btn btn-success">UPDATE</button>
+  </div>
+  </form>
+</div>
+{% endblock abc %}
