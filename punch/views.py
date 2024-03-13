@@ -12,8 +12,10 @@ def homepage(request):
     return render(request,"home.html")
 def aboutus(request):
     return render(request,"aboutus.html")
+@login_required
 def contactusx(request):
     return render(request,"contactus.html")
+@login_required
 def services(request):
     data=contactus.objects.all().order_by("-id")
     context={"mydata": data}
@@ -35,7 +37,7 @@ def savethis(request):
         image : {myimg}
          dhnyawaad...!
         """
-        mail=EmailMessage("this email comming from django file",myemail,"shanuchoudharyvikas@gmail.com",["shanuchoudharyvikas@gmail.com","preetkaurskhp2002@gmail.com"])
+        mail=EmailMessage("this email comming from django file",myemail,"shanuchoudharyvikas@gmail.com",["shanuchoudharyvikas@gmail.com"])
         mail.send()
         # data=contactus("contact")
         mydata=contactus(username=Fullname,useremail=email,phonenumber=phone__number,message=message,myimage=myimg)
@@ -88,6 +90,8 @@ def signup(request):
     return render(request,"signup.html")
 
 def mylogin(request):
+    if request.user.is_authenticated:
+        return redirect("contactus")
     if request.method=="POST":
         myname=request.POST.get("username")
         passw=request.POST.get("password")
@@ -103,4 +107,4 @@ def mylogin(request):
 
 def mylogout(request):
     logout(request)
-    return render("login")
+    return redirect("login")

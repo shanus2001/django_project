@@ -8,7 +8,6 @@ urlpatterns = [
     path("contactus",views.contactusx,name="contactus"),
     path("services",views.services,name="services"),
     path("datasave",views.savethis),
-  
     path("updatethis/<int:zxc>",views.updatethisdata),
     path("update-this-data/<int:updateid>",views.nowupdatedata),
     path("delete-record/<int:myid>",views.deletethisdata),
